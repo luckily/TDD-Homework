@@ -30,6 +30,7 @@ class CartTest extends PHPUnit_Framework_TestCase
         //Arrange
         $products = array();
         $products[] = new stubProduct(1, 100);
+        $products[] = new stubProduct(2, 100);
 
 
         //Act
