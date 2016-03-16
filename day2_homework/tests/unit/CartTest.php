@@ -17,7 +17,7 @@ class CartTest extends PHPUnit_Framework_TestCase
 
         //Act
         $cart = new Day2\App\ShoppingCart($products);
-        $actual = $cart->calculatePrice();
+        $actual = $cart->calculatePrice(new Day2\App\Promotions\HarryPotter());
         $expected = 100;
 
         //Assert
@@ -35,7 +35,7 @@ class CartTest extends PHPUnit_Framework_TestCase
 
         //Act
         $cart = new Day2\App\ShoppingCart($products);
-        $actual = $cart->calculatePrice();
+        $actual = $cart->calculatePrice(new Day2\App\Promotions\HarryPotter());
         $expected = 190;
 
         //Assert
@@ -53,7 +53,7 @@ class CartTest extends PHPUnit_Framework_TestCase
 
         //Act
         $cart = new Day2\App\ShoppingCart($products);
-        $actual = $cart->calculatePrice();
+        $actual = $cart->calculatePrice(new Day2\App\Promotions\HarryPotter());
         $expected = 270;
 
         //Assert
@@ -72,7 +72,7 @@ class CartTest extends PHPUnit_Framework_TestCase
 
         //Act
         $cart = new Day2\App\ShoppingCart($products);
-        $actual = $cart->calculatePrice();
+        $actual = $cart->calculatePrice(new Day2\App\Promotions\HarryPotter());
         $expected = 320;
 
         //Assert
@@ -92,7 +92,7 @@ class CartTest extends PHPUnit_Framework_TestCase
 
         //Act
         $cart = new Day2\App\ShoppingCart($products);
-        $actual = $cart->calculatePrice();
+        $actual = $cart->calculatePrice(new Day2\App\Promotions\HarryPotter());
         $expected = 375;
 
         //Assert
@@ -111,7 +111,7 @@ class CartTest extends PHPUnit_Framework_TestCase
 
         //Act
         $cart = new Day2\App\ShoppingCart($products);
-        $actual = $cart->calculatePrice();
+        $actual = $cart->calculatePrice(new Day2\App\Promotions\HarryPotter());
         $expected = 370;
 
         //Assert
@@ -131,7 +131,7 @@ class CartTest extends PHPUnit_Framework_TestCase
 
         //Act
         $cart = new Day2\App\ShoppingCart($products);
-        $actual = $cart->calculatePrice();
+        $actual = $cart->calculatePrice(new Day2\App\Promotions\HarryPotter());
         $expected = 460;
 
         //Assert
