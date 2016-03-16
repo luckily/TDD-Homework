@@ -16,7 +16,7 @@ class CartTest extends PHPUnit_Framework_TestCase
 
 
         //Act
-        $cart = new Day2\App\Cart($products);
+        $cart = new Day2\App\ShoppingCart($products);
         $actual = $cart->calculatePrice();
         $expected = 100;
 
@@ -34,7 +34,7 @@ class CartTest extends PHPUnit_Framework_TestCase
 
 
         //Act
-        $cart = new Day2\App\Cart($products);
+        $cart = new Day2\App\ShoppingCart($products);
         $actual = $cart->calculatePrice();
         $expected = 190;
 
@@ -45,46 +45,97 @@ class CartTest extends PHPUnit_Framework_TestCase
     public function test_buy_3_different_books_result_270()
     {
         //Arrange
+        $products = array();
+        $products[] = new stubProduct(1, 100);
+        $products[] = new stubProduct(2, 100);
+        $products[] = new stubProduct(3, 100);
+
 
         //Act
+        $cart = new Day2\App\ShoppingCart($products);
+        $actual = $cart->calculatePrice();
+        $expected = 270;
 
         //Assert
-
+        $this->assertEquals($expected, $actual);
     }
 
     public function test_buy_4_different_books_result_320()
     {
+        //Arrange
+        $products = array();
+        $products[] = new stubProduct(1, 100);
+        $products[] = new stubProduct(2, 100);
+        $products[] = new stubProduct(3, 100);
+        $products[] = new stubProduct(4, 100);
 
+
+        //Act
+        $cart = new Day2\App\ShoppingCart($products);
+        $actual = $cart->calculatePrice();
+        $expected = 320;
+
+        //Assert
+        $this->assertEquals($expected, $actual);
     }
 
     public function test_buy_5_different_books_result_375()
     {
         //Arrange
+        $products = array();
+        $products[] = new stubProduct(1, 100);
+        $products[] = new stubProduct(2, 100);
+        $products[] = new stubProduct(3, 100);
+        $products[] = new stubProduct(4, 100);
+        $products[] = new stubProduct(5, 100);
+
 
         //Act
+        $cart = new Day2\App\ShoppingCart($products);
+        $actual = $cart->calculatePrice();
+        $expected = 375;
 
         //Assert
-
+        $this->assertEquals($expected, $actual);
     }
 
     public function test_buy_4_books_one_is_episode1_and_one_is_episode2_and_two_episode3_result_370()
     {
         //Arrange
+        $products = array();
+        $products[] = new stubProduct(1, 100);
+        $products[] = new stubProduct(2, 100);
+        $products[] = new stubProduct(3, 100);
+        $products[] = new stubProduct(3, 100);
+
 
         //Act
+        $cart = new Day2\App\ShoppingCart($products);
+        $actual = $cart->calculatePrice();
+        $expected = 370;
 
         //Assert
-
+        $this->assertEquals($expected, $actual);
     }
 
-    public function test_buy_5_books_one_is_episode1_and_two_episode2_and_two_episode3_result_370()
+    public function test_buy_5_books_one_is_episode1_and_two_episode2_and_two_episode3_result_460()
     {
         //Arrange
+        $products = array();
+        $products[] = new stubProduct(1, 100);
+        $products[] = new stubProduct(2, 100);
+        $products[] = new stubProduct(2, 100);
+        $products[] = new stubProduct(3, 100);
+        $products[] = new stubProduct(3, 100);
+
 
         //Act
+        $cart = new Day2\App\ShoppingCart($products);
+        $actual = $cart->calculatePrice();
+        $expected = 460;
 
         //Assert
-
+        $this->assertEquals($expected, $actual);
     }
 }
 
