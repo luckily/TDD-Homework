@@ -28,11 +28,17 @@ class CartTest extends PHPUnit_Framework_TestCase
     public function test_buy_2_books_one_is_episode1_and_one_is_episode2_result_190()
     {
         //Arrange
+        $products = array();
+        $products[] = new stubProduct(1, 100);
+
 
         //Act
+        $cart = new Day2\App\Cart($products);
+        $actual = $cart->calculatePrice();
+        $expected = 190;
 
         //Assert
-
+        $this->assertEquals($expected, $actual);
     }
 
     public function test_buy_3_different_books_result_270()
