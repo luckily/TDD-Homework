@@ -25,6 +25,10 @@ class HarryPotter implements ICalculate
         $this->_products = $products;
     }
 
+    /**
+     * 計算購物車內的金額
+     * @return int
+     */
     public function calculate()
     {
         if(empty($this->_products))
@@ -53,21 +57,62 @@ class HarryPotter implements ICalculate
             $groupSize = count($calculationGroups);
             foreach($calculationGroups as $j => &$calculationGroup) {
 
-                if(!array_key_exists((string)$product->getId(), $calculationGroup)) {
+                if(!$this->_isExistsInCalculationGroup($product->getId(), $calculationGroup)) {
+
                     $calculationGroup[(string)$product->getId()] = $product->getPrice();
                     break;
-                } elseif(array_key_exists((string)$product->getId(), $calculationGroup) && $j+1 != $groupSize) {
+
+                } elseif($this->_isExistsInCalculationGroup($product->getId(), $calculationGroup) && !$this->_isLast($j, $groupSize)) {
+
                     continue;
+
                 } else {
+
                     $calculationGroups[] = [(string)$product->getId() => $product->getPrice()];
                     break;
+
                 }
 
             }
 
         }
 
+        $results = $this->_getSumGroup($calculationGroups);
+        return array_sum($results);
+    }
+
+    /**
+     * 產品id是否已經在各別加總的陣列中?
+     * @param $productId
+     * @param $calculationGroup
+     * @return bool
+     */
+    private function _isExistsInCalculationGroup($productId, $calculationGroup)
+    {
+        return array_key_exists((string)$productId, $calculationGroup);
+    }
+
+    /**
+     * 是否為最後一組加總群組
+     * @param $counter
+     * @param $groupSize
+     * @return bool
+     */
+    private function _isLast($counter, $groupSize)
+    {
+        return $counter +1 == $groupSize;
+    }
+
+    /**
+     * 針對各別不同值的群組中，各別加總之後回傳金額陣列
+     * @param $calculationGroups
+     * @return array
+     */
+    private function _getSumGroup($calculationGroups)
+    {
+
         // 遇到很奇怪的事情...foreach裡面一定要帶&才會是對的, COPY ON WRITE??
+
         $results = array();
         foreach($calculationGroups as &$calculationGroup) {
             switch(count($calculationGroup)) {
@@ -89,6 +134,6 @@ class HarryPotter implements ICalculate
             }
         }
 
-        return array_sum($results);
+        return $results;
     }
 }
